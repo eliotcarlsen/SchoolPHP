@@ -1,0 +1,12 @@
+{% include "top.html.twig" %}
+{% if classes is not empty %}
+<h2>List of Classes:</h2>
+{% for class in classes %}
+<ul>
+<li><a href="/class{{class.getId}}">{{ class.getCourse }}:{{ class.getName }}</a></li>
+</ul>
+{% endfor %}
+{% else %}
+<h2>No Classes Offered!</h2>
+{% endif %}
+{% include "bottom.html.twig" %}

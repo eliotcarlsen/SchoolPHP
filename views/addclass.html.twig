@@ -1,0 +1,10 @@
+  {% include "top.html.twig" %}
+  <form action="/addclass" method="post">
+    <label for="classname">Enter Class Name:</label>
+    <input class="form-control" type="text" name="classname">
+    <label for="course_number">Enter Course Number:</label>
+    <input class="form-control" type="text" name="course_number">
+    <button type="submit">Enter</button>
+  </form>
+
+  {% include "bottom.html.twig" %}

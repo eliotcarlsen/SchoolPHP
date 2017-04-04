@@ -1,0 +1,13 @@
+{% include "top.html.twig" %}
+{% if students is not empty %}
+<h2>List of Students:</h2>
+{% for student in students %}
+<ul>
+<li><a href="/student{{ student.getId }}">{{ student.getName }}</a></li>
+</ul>
+{% endfor %}
+{% else %}
+<h2>No Students Enrolled!</h2>
+{% endif %}
+
+{% include "bottom.html.twig" %}
