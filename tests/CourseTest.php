@@ -49,7 +49,7 @@ class CourseTest extends PHPUnit_Framework_TestCase
     $this->assertEquals([], $result);
   }
   function test_findStudents(){
-    $newStudent = new Student("Zander");
+    $newStudent = new Student("Zander", $newStudent->getDate());
     $newStudent->save();
     $newStudent2 = new Student("Blander");
     $newStudent2->save();

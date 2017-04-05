@@ -38,6 +38,11 @@
       return $app['twig']->render('seestudents.html.twig', array('students'=>Student::getAll()));
     });
 
+    $app->get("/student{ id }", function($id) use($app) {
+      return $app['twig']->render('student.html.twig', array('students'=>Student::getAll()));
+    });
+
+
     $app->post("/addstudent", function() use($app) {
       return $app['twig']->render('addstudent.html.twig');
     });

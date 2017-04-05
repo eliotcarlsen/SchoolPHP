@@ -5,7 +5,7 @@
     private $date_enrolled;
     private $id;
 
-    function __construct($name, $date_enrolled=null, $id=null)
+    function __construct($name, $date_enrolled, $id=null)
     {
       $this->name = $name;
       $this->date_enrolled = $date_enrolled;
