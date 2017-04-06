@@ -1,5 +1,15 @@
 {% include "top.html.twig" %}
-  <form action="/student{id}" method="post">
-    
+  <form action="/student/{{ student.getId }}" method="post">
+    {% if student is not empty %}
+    <h3>Check courses to enroll {{ student.getName }}</h3>
+
+
+    {% for course in courses %}
+      <input type="checkbox" name="course_select[]" value="{{ course.getId }}">{{ course.getName }}<br>
+    {% endfor %}
+    {% endif %}
+    <div class='form-group'>
+      <button type="submit" class="btn btn-primary">Add Classes</button>
+    </div>
   </form>
 {% include "bottom.html.twig" %}

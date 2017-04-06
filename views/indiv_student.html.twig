@@ -1,0 +1,13 @@
+{% include "top.html.twig" %}
+{% if student is not empty %}
+<h2>{{ student.getName }}</h2>
+{% for course in courses %}
+<h3>{{ course.getName }}</h3>
+{% endfor %}
+{% endif %}
+
+
+
+
+
+{% include "bottom.html.twig" %}

@@ -38,10 +38,21 @@
       return $app['twig']->render('seestudents.html.twig', array('students'=>Student::getAll()));
     });
 
-    $app->get("/student{ id }", function($id) use($app) {
-      return $app['twig']->render('student.html.twig', array('students'=>Student::getAll()));
+    $app->get("/student/{id}", function($id) use($app) {
+      $student = Student::find($id);
+      $courses = Course::getAll();
+      return $app['twig']->render('student.html.twig', array('student'=>$student, 'courses'=>$courses));
     });
 
+    $app->post("/student/{id}", function($id) use($app) {
+      $student = Student::find($id);
+      $results = $_POST['course_select'];
+      foreach($results as $result){
+          $student->addCourse($result);
+      }
+      $student_courses = $student->findCourses();
+      return $app['twig']->render('indiv_student.html.twig', array('student'=>$student, 'courses'=>$student_courses));
+    });
 
     $app->post("/addstudent", function() use($app) {
       return $app['twig']->render('addstudent.html.twig');
@@ -53,9 +64,6 @@
 
     $app->get("/seestudents", function() use($app) {
       return $app['twig']->render('seestudents.html.twig', array('students'=>Student::getAll()));
-    });
-    $app->get("class{id}", function($id) use ($app){
-
     });
 
     return $app;

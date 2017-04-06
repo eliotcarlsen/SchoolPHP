@@ -3,7 +3,7 @@
 <h2>List of Students:</h2>
 {% for student in students %}
 <ul>
-<li><a href="/student{{ student.getId }}">{{ student.getName }}</a></li>
+<li><a href="/student/{{ student.getId }}">{{ student.getName }}</a></li>
 </ul>
 {% endfor %}
 {% else %}

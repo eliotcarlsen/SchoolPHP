@@ -5,7 +5,7 @@
     private $date_enrolled;
     private $id;
 
-    function __construct($name, $date_enrolled, $id=null)
+    function __construct($name, $date_enrolled=null, $id=null)
     {
       $this->name = $name;
       $this->date_enrolled = $date_enrolled;
@@ -64,8 +64,26 @@
         return true;
       }
     }
+
+    static function find($search_id)
+        {
+            $found_student = null;
+            $returned_students = $GLOBALS['DB']->prepare("SELECT * FROM students WHERE id = :id");
+            $returned_students->bindParam(':id', $search_id, PDO::PARAM_STR);
+            $returned_students->execute();
+            foreach($returned_students as $student){
+              $student_name = $student['name'];
+              $enroll_date = $student['date_enrolled'];
+              $id = $student['id'];
+              if($id == $search_id){
+                $found_student = new Student($student_name, $enroll_date, $id);
+              }
+            }
+            return $found_student;
+        }
+
     function addCourse($course){
-      $executed = $GLOBALS['DB']->exec("INSERT INTO classes_students (student_id, course_id) VALUES ({$this->getId()}, {$course->getId()});");
+      $executed = $GLOBALS['DB']->exec("INSERT INTO classes_students (student_id, course_id) VALUES ({$this->getId()}, {$course});");
       if($executed){
         return true;
       }else{
